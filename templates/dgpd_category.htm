@@ -1,0 +1,71 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_CATEGORY_PARENTS}></div>
+<div class="DGPDBlock">
+	<ul>
+		<{foreach from=$tplvar.parents item=category name=parents}>
+		<li<{if $category->cid == $tplvar.category->cid}> class="DGPDItemnow"<{/if}>><a href="category.php?iid=<{$category->iid}>&cid=<{$category->cid}>" title="<{$category->ctitle}>"><{$category->ctitle}></a></li>
+		<{/foreach}>
+	</ul>
+</div>
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_CATEGORY_CHILDREN}></div>
+<div class="DGPDBlock">
+	<ul>
+		<{foreach from=$tplvar.children item=category name=children}>
+		<li<{if $category->cid == $tplvar.category->cid}> class="DGPDItemnow"<{/if}>><a href="category.php?iid=<{$category->iid}>&cid=<{$category->cid}>" title="<{$category->ctitle}>"><{$category->ctitle}></a></li>
+		<{/foreach}>
+	</ul>
+</div>
+
+<!--
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_CATEGORY_CATEGORIES}></div>
+<div class="DGPDBlock">
+	<div class="Accordiontree">
+	<{assign var="pc_level" value=-1}>
+	<{foreach from=$tplvar.tree_categories item=category name=tree_categories}>
+		<{if $pc_level > $category->level}>
+			<{section loop=$pc_level start=$category->level step=1 name=endlevel}></li></ul><{/section}>
+		<{/if}>
+		<{if $category->level > $pc_level}><ul><{else}></li><{/if}>
+		<li<{if $category->cid == $tplvar.category->cid}> class="AccordiontreeNow"<{/if}>>
+		<a href="category.php?iid=<{$category->iid}>&cid=<{$category->cid}>" title="<{$category->ctitle}>"><{$category->ctitle}></a>
+		<{assign var="pc_level" value=$category->level}>
+	<{/foreach}>
+	<{section loop=$pc_level start=0 step=1 name=finalendlevel}></li></ul><{/section}>
+	</div>
+</div>
+-->
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="issue_articles.php?iid=<{$tplvar.issue->iid}>" title="<{$tplvar.issue->ititle}>"><{$tplvar.issue->ititle}></a></li>
+	<li><a href="<{$smarty.server.REQUEST_URI}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+<div><{$tplvar.category->cintroduction}></div>
+
+<div id="DGPDArticles">
+<dl class="DGPDDlist">
+	<{foreach from=$tplvar.articles item=article name=articles}>
+	<dt><a href="article.php?aid=<{$article->aid}>" title="<{$article->atitle}>"><{$article->atitle}></a></dt>
+	<dd>
+	<{if $article->thumbnail}><div class="DGPDThumbnail"><img src="<{$article->thumbnail}>" /></div><{/if}>
+	<div><{$smarty.const._MD_DGPD_CATEGORY_AUTHOR}><{$article->aauthor}></div>
+	<div><{$article->acontent_substr}></div>
+	<{if $article->thumbnail}><div class="DGPDThumbnailClear"></div><{/if}>
+	</dd>
+	<{/foreach}>
+</dl>
+</div>
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

@@ -1,0 +1,18 @@
+<div id="DGPD">
+
+<ul id="DGPDToolbar">
+	<{if $tplvar.user.uid != 0}>
+	<li id="DGPDToolbarmb"><a href="<{$smarty.const.XOOPS_URL}>/user.php" title="<{$tplvar.user.uname}>"><{$tplvar.user.uname}></a></li>
+	<{else}>
+	<li id="DGPDToolbarmb"><a href="<{$smarty.const.XOOPS_URL}>/user.php?xoops_redirect=<{$smarty.server.REQUEST_URI|urlencode}>" title="<{$smarty.const._MD_DGPD_INDEX_LGNUSER}>"><{$smarty.const._MD_DGPD_INDEX_LGNUSER}></a></li>
+	<{/if}>
+	<{if $tplvar.auth.editor}><li id="DGPDToolbarmg"><a href="manage.php?option=mng" title="<{$smarty.const._MD_DGPD_INDEX_MNGISSUE}>"><{$smarty.const._MD_DGPD_INDEX_MNGISSUE}></a></li><{/if}>
+	<{if $tplvar.auth.reviewer}><li id="DGPDToolbarrv"><a href="manage.php?option=rvw" title="<{$smarty.const._MD_DGPD_INDEX_RVWISSUE}>"><{$smarty.const._MD_DGPD_INDEX_RVWISSUE}></a></li><{/if}>
+	<{if $tplvar.auth.contributor}><li id="DGPDToolbarcb"><a href="manage.php?option=ctb" title="<{$smarty.const._MD_DGPD_INDEX_CTBISSUE}>"><{$smarty.const._MD_DGPD_INDEX_CTBISSUE}></a></li><{/if}>
+</ul>
+
+<div id="DGPDFrame"><!-- DGPDFrame begin -->
+
+<div id="DGPDHeader">
+<div id="DGPDTitle"><a href="index.php" title="<{$tplvar.dgpd.title}>"><div><{$tplvar.dgpd.title}></div></a></div>
+</div>

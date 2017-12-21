@@ -1,0 +1,60 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="manage.php?option=mng" title="<{$smarty.const._MD_DGPD_MANAGE_MNGISSUE}>"><{$smarty.const._MD_DGPD_MANAGE_MNGISSUE}></a></li>
+	<li><a href="manage_issue.php?option=mng&iid=<{$tplvar.issue->iid}>" title="<{$tplvar.issue->ititle}>"><{$tplvar.issue->ititle}></a></li>
+	<li><a href="<{$smarty.server.REQUEST_URI}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+
+<{if $tplvar.option == 'add' || $tplvar.option == 'edt'}>
+<form id="DGPDForm" method="post" action="<{$smarty.server.REQUEST_URI}>">
+<dl class="DGPDDlist">
+	<dt><label for="DGPDFormUcategory"><{$smarty.const._MD_DGPD_MANAGECATEGORY_UCATEGORY}></label></dt>
+	<dd>
+		<select id="DGPDFormUcategory" name="ucid" class="DGPDFMFormat">
+		<{foreach from=$tplvar.categories item=category name=categories}>
+		<option value="<{$category->cid}>"<{if $category->cid == $tplvar.category->ucid}> selected="selected"<{/if}>>
+		<{section loop=$category->level start=0 step=1 name=level}>--<{/section}>
+		<{$category->ctitle}>
+		</option>
+		<{/foreach}>
+		</select>
+	</dd>
+	<dt><label for="DGPDFormTitle"><{$smarty.const._MD_DGPD_MANAGECATEGORY_TITLE}></label></dt>
+	<dd><input type="text" id="DGPDFormTitle" name="ctitle" value="<{$tplvar.category->ctitle}>" class="DGPDFMFormat" /></dd>
+	<dt><label for="DGPDFormTinymceContent0"><{$smarty.const._MD_DGPD_MANAGECATEGORY_INTRODUCTION}></label></dt>
+	<dd><textarea class="DGPDFormTinymceContent" id="DGPDFormTinymceContent0" name="cintroduction"><{$tplvar.category->cintroduction}></textarea></dd>
+	<dt><label for="DGPDFormOrder"><{$smarty.const._MD_DGPD_MANAGECATEGORY_ORDER}></label></dt>
+	<dd>
+	<input type="text" id="DGPDFormOrder" class="DGPDFMFormatShort" name="corder" value="<{$tplvar.category->corder}>" /><br />
+	<{$smarty.const._MD_DGPD_MANAGECATEGORY_ORDER_DESC}>
+	</dd>
+	<dt><{$smarty.const._MD_DGPD_MANAGECATEGORY_CANCTB}></dt>
+	<dd>
+		<input type="radio" id="DGPDFormCanctbYes" name="ccanctb" value="1"<{if $tplvar.option == 'add' || ($tplvar.option == 'edt' && $tplvar.category->ccanctb)}> checked="checked"<{/if}> />
+		<label for="DGPDFormCanctbYes"><{$smarty.const._MD_DGPD_YES}></label>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" id="DGPDFormCanctbNo" name="ccanctb" value="0"<{if $tplvar.option == 'edt' && !$tplvar.category->ccanctb}> checked="checked"<{/if}> />
+		<label for="DGPDFormCanctbNo"><{$smarty.const._MD_DGPD_NO}></label><br />
+		<{$smarty.const._MD_DGPD_MANAGECATEGORY_CANCTB_DESC}>
+	</dd>
+	<dd>
+	<input type="submit" value="<{$smarty.const._MD_DGPD_SUBMIT}>" /><input type="reset" value="<{$smarty.const._MD_DGPD_RESET}>" />
+	<input type="hidden" name="submitted" value="true" />
+	</dd>
+</dl>
+</form>
+<{/if}>
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

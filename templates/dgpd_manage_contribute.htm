@@ -1,0 +1,75 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="manage.php?option=ctb" title="<{$smarty.const._MD_DGPD_MANAGE_CTBISSUE}>"><{$smarty.const._MD_DGPD_MANAGE_CTBISSUE}></a></li>
+	<li><a href="<{$smarty.server.REQUEST_URI}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+
+<form id="DGPDForm" method="post" action="<{$smarty.server.REQUEST_URI}>" enctype="multipart/form-data">
+<dl class="DGPDDlist">
+	<dt><label for="DGPDFormArticlecid"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_CTBCATEGORY}></label></dt>
+	<dd>
+		<select id="DGPDFormArticlecid" name="cid" class="DGPDFMFormat">
+		<{foreach from=$tplvar.categories item=category name=categories}>
+		<option<{if !$category->ccanctb}> class="DGPDFormArticlecidCant"<{/if}> value="<{$category->cid}>">
+		<{if $category->ccanctb}>[O]<{else}>[X]<{/if}>
+		<{section loop=$category->level start=0 step=1 name=level}>--<{/section}>
+		<{$category->ctitle}>
+		</option>
+		<{/foreach}>
+		</select><br />
+		<{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_CTBCATEGORY_DESC}>
+	</dd>
+	<dt><label for="DGPDFormTitle"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_TITLE}></label></dt>
+	<dd><input type="text" id="DGPDFormTitle" name="atitle" value="" class="DGPDFMFormat" /></dd>
+	<dt><label for="DGPDFormSubtitle"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_SUBTITLE}></label></dt>
+	<dd><input type="text" id="DGPDFormSubtitle" name="asubtitle" value="" class="DGPDFMFormat" /></dd>
+	<dt><label for="DGPDFormAuthor"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_AUTHOR}></label></dt>
+	<dd><input type="text" id="DGPDFormAuthor" name="aauthor" value="" class="DGPDFMFormat" /></dd>
+	<{if !empty($tplvar.teachers)}>
+	<dt><label for="DGPDFormTeacher"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_TEACHER}></label></dt>
+	<dd>
+		<select id="DGPDFormTeacher" name="atch_uid" class="DGPDFMFormat">
+		<option value="0"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_NONE}></option>
+		<{foreach from=$tplvar.teachers item=teacher name=teachers}>
+		<option value="<{$teacher.uid}>"><{$teacher.uname}></option>
+		<{/foreach}>
+		</select>
+		<{if $tplvar.tchreview}><p><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_TCHREVIEW}></p><{/if}>
+	</dd>
+	<{/if}>
+	<dt><label for="DGPDFormContent"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_CONTENT}></label></dt>
+	<dd><textarea id="DGPDFormContent" class="DGPDFormTinymceContent" name="acontent"></textarea></dd>
+	<{if $tplvar.user.uid == 0}>
+	<dt><label for="DGPDFormContributor"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_CONTRIBUTOR}></label></dt>
+	<dd><input type="text" id="DGPDFormContributor" name="acontributor" value="" class="DGPDFMFormat" /></dd>
+	<{/if}>
+</dl>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_FILE}></div>
+<{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_FILE_DESC}><br /><{$tplvar.filetyp_string}>
+<ul id="DGPDFormFilefield">
+	<li>
+	<{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_FILESELECT}><input type="file" name="file[]" size="10" /><br />
+	<{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_FILEDESCRIPTION}><input type="text" name="description[]" value="" />
+	</li>
+</ul>
+<input id="DGPDFormFilefieldAdd" type="button" value="<{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_ADDFILEFIELD}>" />
+<p>&nbsp;</p>
+<p><{$smarty.const._MD_DGPD_MANAGECONTRIBUTE_ATTENTION}></p><br />
+<input type="submit" value="<{$smarty.const._MD_DGPD_SUBMIT}>" /><input type="reset" value="<{$smarty.const._MD_DGPD_RESET}>" />
+<input type="hidden" name="submitted" value="true" />
+</form>
+
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

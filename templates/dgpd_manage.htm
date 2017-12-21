@@ -1,0 +1,54 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+<{if $tplvar.option == 'mng'}>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_LSTFUNCTION}></div>
+<div class="DGPDBlock">
+<ul>
+	<li><a href="manage_issue.php?option=add" title="<{$smarty.const._MD_DGPD_MANAGE_ADDISSUE}>"><{$smarty.const._MD_DGPD_MANAGE_ADDISSUE}></a></li>
+</ul>
+</div>
+<{/if}>
+
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="manage.php?option=<{$tplvar.option}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+
+<dl class="DGPDDlist">
+<{if $tplvar.option == 'mng'}>
+	<{foreach from=$tplvar.issues item=issue name=issues}>
+	<dt>
+	<a href="manage_issue.php?option=mng&iid=<{$issue->iid}>" title="<{$issue->ititle}>"><{$issue->ititle}></a> / <{$issue->idate}> (<span><{if $issue->ipublished}><{$smarty.const._MD_DGPD_PUBLISHED}><{else}><{$smarty.const._MD_DGPD_UNPUBLISH}><{/if}></span>)
+	</dt>
+	<dd><{$issue->iintroduction}></dd>
+	<{/foreach}>
+<{elseif $tplvar.option == 'rvw'}>
+<{$smarty.const._MD_DGPD_MANAGE_RVWDESC}>
+	<{foreach from=$tplvar.issues item=issue name=issues}>
+	<dt><a href="manage_review.php?iid=<{$issue->iid}>" title="<{$issue->ititle}>"><{$issue->ititle}></a> / <{$issue->idate}>
+	</dt>
+	<dd><{$issue->iintroduction}></dd>
+	<{/foreach}>
+<{elseif $tplvar.option == 'ctb'}>
+<{$smarty.const._MD_DGPD_MANAGE_CTBDESC}>
+	<{foreach from=$tplvar.issues item=issue name=issues}>
+	<dt><a href="manage_contribute.php?iid=<{$issue->iid}>" title="<{$issue->ititle}>"><{$issue->ititle}></a> / <{$issue->idate}>
+	</dt>
+	<dd><{$issue->iintroduction}></dd>
+	<{/foreach}>
+<{/if}>
+</dl>
+
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

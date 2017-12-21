@@ -1,0 +1,86 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_ARTICLE_CATEGORYARTICLE}></div>
+<div class="DGPDBlock">
+<ul>
+	<{foreach from=$tplvar.articles item=article name=articles}>
+	<li<{if $article->aid == $tplvar.article->aid}> class="DGPDItemnow"<{/if}>>
+	<a href="article.php?aid=<{$article->aid}>" title="<{$article->atitle}>"><{$article->atitle}></a>
+	</li>
+	<{/foreach}>
+</ul>
+</div>
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="issue_articles.php?iid=<{$tplvar.issue->iid}>" title="<{$tplvar.issue->ititle}>"><{$tplvar.issue->ititle}></a></li>
+	<li><a href="category.php?iid=<{$tplvar.category->iid}>&cid=<{$tplvar.category->cid}>" title="<{$tplvar.category->ctitle}>"><{$tplvar.category->ctitle}></a></li>
+	<li class="DGPDItemnow"><a href="<{$smarty.server.REQUEST_URI}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+<{if $tplvar.article->asubtitle != ''}><div class="DGPDH3"><{$tplvar.article->asubtitle}></div><{/if}>
+<div>
+<{if $tplvar.article->aauthor != ''}><span id="DGPDArticleAuthor"><{$smarty.const._MD_DGPD_ARTICLE_AUTHOR}><{$tplvar.article->aauthor}></span><{/if}>
+<{if $tplvar.article->ateacher != ''}><span id="DGPDArticleTeacher"><{$smarty.const._MD_DGPD_ARTICLE_TEACHER}><{$tplvar.article->ateacher}></span><{/if}>
+</div>
+<div id="DGPDArticleContent">
+<{$tplvar.article->acontent}>
+</div>
+
+<{if sizeof($tplvar.article->file) != 0}>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_ARTICLE_FILE}></div>
+<ul id="DGPDFile">
+	<{foreach from=$tplvar.article->file item=file name=files}>
+	<li>
+	<{assign var=file_subfilename value=$file->getSubfilename()}>
+	<{if $file_subfilename=='jpg' || $file_subfilename=='jpeg' || $file_subfilename=='gif' || $file_subfilename=='png'}>
+		<div class="DGPDFileDisplay">
+		<{if $file->description != ''}><div class="DGPDFileDescription"><{$file->description}></div><{/if}>
+		<img src="file.php?fid=<{$file->fid}>" title="<{$file->description}>" width="80%" />
+		</div>
+	<{elseif $file_subfilename=='mpg' || $file_subfilename=='avi' || $file_subfilename=='wmv'}>
+		<object classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6" width="480" height="360">
+			<param name="url" value="<{$file->filepath}>">
+			<param name="uiMode" value="mini">
+			<param name="autoStart" value="false">
+			<embed src="<{$file->filepath}>" type="video/x-ms-wmv" width="480" height="360" autoStart="0" showControls="1"></embed>
+		</object>
+	<{elseif $file_subfilename=='mp4' || $file_subfilename=='flv'}>
+		<embed flashvars="file=<{$file->filepath}>&autostart=false" src="jwplayer/player.swf" width="480" height="360" allowfullscreen="true" allowscripaccess="always" />
+	<{elseif $file_subfilename=='mp3' || $file_subfilename=='wav' || $file_subfilename=='wma' || $file_subfilename=='mid'}>
+		<object classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6" type="application/x-oleobject" height="45" width="150">
+			<param name="url" value="<{$file->filepath}>">
+			<param name="autoStart" value="false">
+			<param name="loop" value="false">
+			<param name="uiMode" value="mini">
+			<param name="volume" value="50">
+			<embed src="<{$file->filepath}>" type="video/x-ms-wmv" height="45" width="150" autoStart="0" loop="0" volume="50" ShowPositionControls="0" showControls="1">
+			</embed>
+		</object>
+	<{else}>
+		<div class="DGPDThumbnail"><img src="<{$file->iconpath}>" title="<{$file->description}>" /></div>
+		<a href="file.php?fid=<{$file->fid}>" title="<{$file->description}>"><{$file->file_name}></a>
+		<div class="DGPDThumbnailClear"></div>
+	<{/if}>
+	</li>
+	<{/foreach}>
+</ul>
+<{/if}>
+
+<{if $tplvar.article->rcomment != ''}>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_ARTICLE_COMMENT}></div>
+<{if $tplvar.article->reviewer != ''}><div id="DGPDArticleReviewer"><{$tplvar.article->reviewer}></div><{/if}>
+<div><{$tplvar.article->rcomment}>
+</div>
+<{/if}>
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

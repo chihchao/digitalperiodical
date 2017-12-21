@@ -1,0 +1,85 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+<{if $tplvar.option == 'mng'}>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_LSTFUNCTION}></div>
+<div class="DGPDBlock">
+<ul>
+	<li><a href="manage_issue.php?option=edt&iid=<{$tplvar.issue->iid}>" title="<{$smarty.const._MD_DGPD_MANAGEISSUE_EDTISSUE}>"><{$smarty.const._MD_DGPD_MANAGEISSUE_EDTISSUE}></a></li>
+	<li><a href="manage_issue.php?option=del&iid=<{$tplvar.issue->iid}>" title="<{$smarty.const._MD_DGPD_MANAGEISSUE_DELISSUE}>"><{$smarty.const._MD_DGPD_MANAGEISSUE_DELISSUE}></a></li>
+	<li><a href="manage_category.php?option=add&iid=<{$tplvar.issue->iid}>" title="<{$smarty.const._MD_DGPD_MANAGEISSUE_ADDCATEGORY}>"><{$smarty.const._MD_DGPD_MANAGEISSUE_ADDCATEGORY}></a></li>
+</ul>
+</div>
+<{/if}>
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+	<li><a href="manage.php?option=mng" title="<{$smarty.const._MD_DGPD_MANAGE_MNGISSUE}>"><{$smarty.const._MD_DGPD_MANAGE_MNGISSUE}></a></li>
+	<{if $tplvar.option == 'edt'}><li><a href="manage_issue.php?option=mng&iid=<{$tplvar.issue->iid}>" title="<{$tplvar.issue->ititle}>"><{$tplvar.issue->ititle}></a></li><{/if}>
+	<li><a href="<{$smarty.server.REQUEST_URI}>" title="<{$tplvar.title}>"><{$tplvar.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.title}></div>
+
+<{if $tplvar.option == 'add' || $tplvar.option == 'edt'}>
+<form id="DGPDForm" method="post" action="<{$smarty.server.REQUEST_URI}>">
+
+<dl class="DGPDDlist">
+	<dt><label for="DGPDFormTitle"><{$smarty.const._MD_DGPD_MANAGEISSUE_TITLE}></label></dt>
+	<dd><input type="text" id="DGPDFormTitle" name="ititle" value="<{$tplvar.issue->ititle}>" class="DGPDFMFormat" /></dd>
+	<dt><label for="DGPDFormDate"><{$smarty.const._MD_DGPD_MANAGEISSUE_DATE}></label></dt>
+	<dd><input type="text" id="DGPDFormDate" class="DGPDDatepicker" name="idate" value="<{$tplvar.issue->idate}>" /></dd>
+	<dt><label for="DGPDFormTinymceContent0"><{$smarty.const._MD_DGPD_MANAGEISSUE_INTRODUCTION}></label></dt>
+	<dd><textarea class="DGPDFormTinymceContent" id="DGPDFormTinymceContent0" name="iintroduction"><{$tplvar.issue->iintroduction}></textarea></dd>
+	<dt><{$smarty.const._MD_DGPD_MANAGEISSUE_PUBLICED}></dt>
+	<dd>
+		<input type="radio" id="DGPDFormPublicedYes" name="ipublished" value="1"<{if $tplvar.option == 'edt' && $tplvar.issue->ipublished}> checked="checked"<{/if}> />
+		<label for="DGPDFormPublicedYes"><{$smarty.const._MD_DGPD_YES}></label>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" id="DGPDFormPublicedNo" name="ipublished" value="0"<{if $tplvar.option == 'add' || ($tplvar.option == 'edt' && !$tplvar.issue->ipublished)}> checked="checked"<{/if}> />
+		<label for="DGPDFormPublicedNo"><{$smarty.const._MD_DGPD_NO}></label>
+	</dd>
+	<dd>
+	<input type="submit" value="<{$smarty.const._MD_DGPD_SUBMIT}>" /><input type="reset" value="<{$smarty.const._MD_DGPD_RESET}>" />
+	<input type="hidden" name="submitted" value="true" />
+	</dd>
+</dl>
+
+</form>
+<{elseif $tplvar.option == 'mng'}>
+<dl class="DGPDDlist">
+	<dt><{$smarty.const._MD_DGPD_MANAGEISSUE_DATE}></dt>
+	<dd><{$tplvar.issue->idate}></dd>
+	<dt><{$smarty.const._MD_DGPD_MANAGEISSUE_INTRODUCTION}></dt>
+	<dd><{$tplvar.issue->iintroduction}></dd>
+	<dt><{$smarty.const._MD_DGPD_MANAGEISSUE_PUBLICED}></dt>
+	<dd><{if $tplvar.issue->ipublished}><{$smarty.const._MD_DGPD_PUBLISHED}><{else}><{$smarty.const._MD_DGPD_UNPUBLISH}><{/if}></dd>
+</dl>
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_MANAGEISSUE_CATEGORIES}></div>
+<div id="DGPDCategories">
+<{assign var="pc_level" value=0}>
+<{foreach from=$tplvar.categories item=category name=categories}>
+<{if $pc_level > $category->level}>
+<{section loop=$pc_level start=$category->level step=1 name=endlevel}></li></ul><{/section}>
+<{/if}>
+<{if $category->level > $pc_level}><ul><li><{else}></li><li><{/if}>
+<span>[<{if $category->ccanctb}><{$smarty.const._MD_DGPD_MANAGEISSUE_CANCTB}><{else}><{$smarty.const._MD_DGPD_MANAGEISSUE_CANTCTB}><{/if}>]</span>&nbsp;<{$category->ctitle}>
+<div><{$category->cintroduction}></div>
+<ul class="DGPDButtonbar">
+<li><a href="manage_category.php?option=edt&iid=<{$category->iid}>&cid=<{$category->cid}>" title="<{$smarty.const._MD_DGPD_EDIT}>"><{$smarty.const._MD_DGPD_EDIT}></a></li>
+<li><a href="manage_category.php?option=del&iid=<{$category->iid}>&cid=<{$category->cid}>" title="<{$smarty.const._MD_DGPD_DELETE}>"><{$smarty.const._MD_DGPD_DELETE}></a></li>
+</ul>
+<{assign var="pc_level" value=$category->level}>
+<{/foreach}>
+<{section loop=$pc_level start=0 step=1 name=finalendlevel}></li></ul><{/section}>
+</div>
+<{elseif $tplvar.option == 'ctb'}>
+<{/if}>
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>

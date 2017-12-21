@@ -1,0 +1,262 @@
+#DGPDBody {
+	margin: 0;
+	padding: 0;
+	background: #E6ECFF;
+}
+#DGPD { position: relative; }
+#DGPD p, li, dt, dd, div, th, td, a, input, select, option, textarea {
+	color: #666;
+	font-size: 1em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 150%;
+}
+#DGPD p { margin: 5px 0; padding: 0; }
+#DGPD a { color: #819EFF; text-decoration: none; font-weight: bold; }
+#DGPD a:hover { color: #C1A67A; }
+/* layout */
+#DGPD {
+	padding: 30px 15px 30px 15px;
+}
+#DGPDToolbar {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+	margin: 0;
+	padding: 0;
+}
+#DGPDMenu { float: right; width: 210px; margin: 20px 0; }
+#DGPDContent { margin: 20px 225px 20px 0; }
+#DGPDFooter { clear: both; margin: 10px 0; }
+
+
+#DGPD { background: #E6ECFF; }
+#DGPDFrame {
+	padding: 20px 15px;
+	background: #FFF;
+	border: 1px solid #819EFF;
+	border: 1px solid #C0CEFF;
+}
+
+/* DGPDHeader */
+#DGPDToolbar li {
+	display: inline;
+	list-style-type: none;
+}
+#DGPDToolbar li a {
+	color: #3D649C;
+	font-weight: bold;
+	text-decoration: none;
+}
+#DGPDHeader {
+	height: 100px;
+	background: #EEE url("images/bg_header.png") no-repeat right bottom;
+	border: 1px solid #DDD;
+}
+#DGPDTitle {
+	background: url("images/bg_title.png") no-repeat left top;
+}
+#DGPDTitle a div{
+	text-indent: -1000px;
+	width: 300px;
+	height: 100px;
+}
+
+
+/* DGPDContent */
+#DGPDRouter {
+	margin: 0;
+	padding: 0;
+}
+#DGPDRouter li {
+	display: inline;
+	list-style-type: none;
+	padding: 5px 5px 5px 15px;
+	background: url("images/bg_router_li.png") no-repeat 0 8px;
+}
+#DGPDRouter li a {
+	padding: 0;
+	text-decoration: none;
+	font-weight: bold;
+	color: #C1A67A;
+}
+#DGPDRouter li a:hover { color: #819EFF; }
+#DGPDRouter #DGPDRouterFirst { background: url("images/bg_router.png") no-repeat 0 8px; }
+#DGPDContent .DGPDH2 {
+	margin: 10px 0;
+	padding: 8px;
+	background: #809FFF;
+	border-left: 8px solid #3D649C;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#DGPDContent .DGPDDiv {
+	margin: 20px 0;
+}
+#DGPDContent .DGPDH3 {
+	margin: 20px 0 10px 0;
+	padding: 5px 5px 5px 20px;
+	background: url("images/bg_h3.png") no-repeat 0 -2px;
+	border-top: 2px dotted #809FFF;
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #809FFF;
+}
+#DGPDContent .DGPDH3Content {
+}
+#DGPDContent .DGPDDlist { margin: 0; padding: 0; }
+#DGPDContent .DGPDDlist dt {
+	margin: 0;
+	padding: 5px 0 5px 20px;
+	background: url("images/bg_dt.png") no-repeat 0 8px;
+	font-weight: bold;
+	font-size: 1em;
+}
+#DGPDContent .DGPDDlist dt a { text-decoration: none; }
+#DGPDContent .DGPDDlist dd {
+	margin: 0;
+	padding: 5px 0 5px 20px;
+}
+#DGPDContent .DGPDUlist { margin: 0; padding: 0; }
+#DGPDContent .DGPDUlist li {
+	margin: 0;
+	padding: 5px 0 5px 20px;
+	background: url("images/bg_li.png") no-repeat 0 8px;
+	list-style-type: none;
+}
+#DGPDContent #DGPDFile { margin: 0; padding: 0; }
+#DGPDContent #DGPDFile li {
+	list-style-type: none;
+	margin: 5px 0;
+	padding: 10px 0 10px 20px;
+	border: 1px dotted #C0CEFF;
+}
+#DGPDContent #DGPDFile .DGPDFileDisplay { text-align: center; }
+#DGPDContent .DGPDThumbnail {
+	float: left;
+	border: 1px solid #C0CEFF;
+	padding: 5px;
+	margin: 5px 5px 5px 0;
+	width: 105px;
+	text-align: center;
+}
+#DGPDContent .DGPDThumbnailClear { clear: left; }
+#DGPDContent .DGPDParallelLeft {
+	width: 49%;
+	float: left;
+}
+#DGPDContent .DGPDParallelRight {
+	width: 49%;
+	float: left;
+	margin-left: 2%;
+}
+#DGPDContent .DGPDParallelClear { clear: left; }
+#DGPDContent .DGPDAccordionHead { padding: 5px 5px 5px 25px; }
+#DGPDContent .DGPDAccordionContent {
+	padding: 5px 5px 5px 25px;
+	font-weight: normal;
+	font-size: 0.9em;
+}
+#DGPDCategories ul { margin: 0; padding: 0; }
+#DGPDCategories ul li {
+	margin: 0;
+	padding: 5px 0 5px 20px;
+	background: url("images/bg_li.png") no-repeat 0 8px;
+	list-style-type: none;
+}
+#DGPDCategories .DGPDButtonbar { margin: 10px 0; padding: 0; }
+#DGPDCategories .DGPDButtonbar li {
+	display: inline;
+	list-style-type: none;
+	padding: 0 5px 0 0;
+	background: url();
+}
+#DGPDCategories .DGPDButtonbar li a {
+	color: #AAA;
+	background: #EEE;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 2px 8px;
+	border: 1px solid #DDD;
+	font-size: 0.8em;
+}
+.DGPDFMFormat, .DGPDDatepicker {
+	padding: 2px;
+	border: 1px solid #C0CEFF;
+	width: 480px;
+}
+.DGPDFMFileDescription {
+	padding: 2px;
+	border: 1px solid #C0CEFF;
+	width: 370px;
+}
+.DGPDFMFormatShort {
+	padding: 2px;
+	border: 1px solid #C0CEFF;
+	width: 40px;
+}
+.DGPDFormTinymceContent {
+	border: 1px solid #C0CEFF;
+	width: 480px;
+	height: 250px;
+}
+#DGPDFormFilefield { margin: 0; padding: 0; }
+#DGPDFormFilefield li {
+	list-style-type: none;
+	margin: 5px 0;
+	padding: 10px 0 10px 20px;
+	border: 1px dotted #C0CEFF;
+}
+#DGPDTable { border-collapse: collapse; width: 100%; border: 1px solid #C0CEFF; }
+#DGPDTable th { background: #C0CEFF; color: #FFFFFF; text-align: center; }
+#DGPDTable td, #DGPDTable th { vertical-align: top; padding: 5px; }
+#DGPDTable tfoot { padding: 5px; text-align: left; font-weight: bold; border-top: 1px solid #C0CEFF; }
+#DGPDTable .DGPDTableItem { width: 100%; }
+#DGPDTable .DGPDTableNowrap { white-space: nowrap; }
+#DGPDTable .DGPDReviewNypass { background: #E6ECFF; }
+#DGPDTable .DGPDReviewNopass { background: #DDD; }
+
+/* DGPDMenu */
+#DGPDMenu {
+	background: #E6ECFF;
+	border: 1px solid #C0CEFF;
+}
+#DGPDMenu .DGPDH3 {
+	margin: 10px 10px 0 10px;
+	font-weight: bold;
+	color: #3D649C;
+}
+#DGPDMenu .DGPDBlock {
+	margin: 2px 10px 10px 10px;
+	padding: 5px;
+	background: #FFF;
+}
+#DGPDMenu ul {
+	margin: 0;
+	padding: 0;
+}
+#DGPDMenu li {
+	list-style-type: none;
+	margin: 5px 0;
+	padding: 5px 5px 5px 20px;
+	background: url("images/bg_menu_li.png") no-repeat 0 8px;
+}
+#DGPDMenu li a { text-decoration: none; }
+#DGPDMenu .DGPDItemnow {
+	border-bottom: 1px dotted #DDD;
+	background: #EEE url("images/bg_menu_li_now.png") no-repeat 0 8px;
+}
+
+/* DGPDFooter */
+#DGPDFooter {
+	padding: 10px;
+	background: #999;
+	text-align: center;
+	color: #FFF;
+	font-size: 0.8em;
+}
+
+.DGPDClear { clear: both; }
+.DGPDDisplaynone { display: none; }
+.DGPDItem {
+}

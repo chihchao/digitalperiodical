@@ -1,0 +1,90 @@
+<{include file="db:dgpd_header.htm"}>
+<hr class="DGPDDisplaynone" />
+<div id="DGPDMenu"><!-- DGPDMenu begin -->
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_INDEX_ISPBED}></div>
+<div class="DGPDBlock">
+<ul>
+	<{foreach from=$tplvar.issues_published item=issue name=issues_published}>
+	<li<{if $tplvar.issue->iid==$issue->iid}> class="DGPDItemnow"<{/if}>><a href="issue_articles.php?iid=<{$issue->iid}>" title="<{$issue->ititle}>"><{$issue->ititle}></a></li>
+	<{/foreach}>
+</ul>
+</div>
+
+</div><!-- DGPDMenu end -->
+<hr class="DGPDDisplaynone" />
+<div id="DGPDContent"><!-- DGPDContent begin -->
+
+<ul id="DGPDRouter">
+	<li id="DGPDRouterFirst"><a href="index.php" title="<{$tplvar.dgpd.title}>"><{$tplvar.dgpd.title}></a></li>
+</ul>
+
+<div class="DGPDH2"><{$tplvar.dgpd.title}></div>
+<div class="DGPDDiv"><{$tplvar.dgpd.introduction}></div>
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_INDEX_ISNOW}></div>
+
+<{if !empty($tplvar.issue)}>
+<div class="DGPDParallelLeft">
+	<dl class="DGPDDlist">
+	<dt><a href="issue_articles.php?iid=<{$tplvar.issue->iid}>" title="<{$tplvar.issue->ititle}>"><{$tplvar.issue->ititle}></a></dt>
+	<dd>
+	<{$tplvar.issue->iintroduction}>
+	<{if $tplvar.category->countCategoryArticles()}>
+		<div><{$tplvar.category->cintroduction}></div>
+		<{assign var=category_article value=$tplvar.category->getCategoryArticle()}>
+		<{if $category_article->thumbnail}><div class="DGPDThumbnail"><img src="<{$category_article->thumbnail}>" /></div><{/if}>
+		<div><a href="article.php?aid=<{$category_article->aid}>" title="<{$category_article->atitle}>"><{$category_article->atitle}></a></div>
+		<div><{$category_article->acontent_substr}></div>
+		<{if !empty($category_article->aauthor)}><div>~<{$category_article->aauthor}></div><{/if}><div class="DGPDThumbnailClear"></div>
+	<{/if}>
+	</dd>
+	</dl>
+</div>
+<div class="DGPDParallelRight">
+	<div id="DGPDAccordion">
+	<{foreach from=$tplvar.categories item=category name=categories}>
+		<div class="DGPDAccordionHead"><{$category->ctitle}></div>
+		<div class="DGPDAccordionContent">
+		<{$category->cintroduction}>
+		<{if $category->countCategoryArticles() != 0}>
+			<div><{$smarty.const._MD_DGPD_ISSUE_COUNTARTICLES}><{$category->countCategoryArticles()}></div>
+			<div>
+			<{assign var=category_article value=$category->getCategoryArticle()}>
+			<{if $category_article->thumbnail}>
+				<div class="DGPDThumbnail"><img src="<{$category_article->thumbnail}>" /></div>
+			<{/if}>
+			<div><a href="article.php?aid=<{$category_article->aid}>" title="<{$category_article->atitle}>"><{$category_article->atitle}></a></div>
+			<div><{$category_article->acontent_substr}></div>
+			<{if !empty($category_article->aauthor)}>
+			<div class="DGPDAuthor">~<{$category_article->aauthor}></div>
+			<{/if}>
+			<div class="DGPDThumbnailClear"></div>
+			</div>
+		<{/if}>
+		</div>
+	<{/foreach}>
+	</div>
+</div>
+<div class="DGPDParallelClear"></div>
+<{/if}>
+
+<div class="DGPDH3"><{$smarty.const._MD_DGPD_INDEX_ISCALL}></div>
+
+<dl class="DGPDDlist">
+	<{foreach from=$tplvar.issues_unpublish item=issue name=issues_unpublish}>
+	<dt>
+	<{if $tplvar.auth.contributor}>
+	<a href="manage_contribute.php?iid=<{$issue->iid}>" title="<{$issue->ititle}>"><{$issue->ititle}></a>
+	<{else}>
+	<{$issue->ititle}>
+	<{/if}>
+	</dt>
+	<dd><{$issue->iintroduction}></dd>
+	<{/foreach}>
+</dl>
+
+
+</div><!-- DGPDContent end -->
+<hr class="DGPDDisplaynone" />
+<{include file="db:dgpd_footer.htm"}>
